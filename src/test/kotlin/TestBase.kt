@@ -14,9 +14,8 @@ import java.util.*
 open class TestBase {
     lateinit var driver: IOSDriver<IOSElement>
 
-    @BeforeClass
-    fun classInit() {
-        val testAppUrl = javaClass.classLoader.getResource("UIKitCatalog-iphonesimulator.zip")
+    fun setupApp(app: TestApp) {
+        val testAppUrl = javaClass.classLoader.getResource(app.appName())
         val testAppFile = Paths.get(Objects.requireNonNull(testAppUrl).toURI()).toFile()
         val testAppPath = testAppFile.absolutePath
 
